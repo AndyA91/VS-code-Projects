@@ -39,7 +39,7 @@
             <input id="enterIG" type="text"> 
     
             <h7 class="sales-details">Material</h7> 
-            <input id="enterMaterial" type="number">
+            <input id="enterMaterial" type="text">
 
             <h7 class="sales-details">Quanity</h7> 
             <input id="enterQuantity" type="number">
@@ -48,7 +48,10 @@
             <input id="enterPriceCharged" type="number" min="0.01" step="0.01"> 
 
             <h7 class="sales-details">Date Created</h7>
-            <input id="enterDate" type="date">
+            <input id="enterDateCreated" type="date">
+
+            <h7 class="sales-details">Referred By</h7>
+            <input id="enterReferredBy" type="text">
     
              <br><br>
     
@@ -56,15 +59,15 @@
             <button id="update">UPDATE</button>
             <button id="remove">REMOVE</button> <br><br>
         </div>
-    
-        <div id="findDetails">
-            <h1>Find by ID</h1>
-            <h4>ID</h4>
-            <input id="findID" type="text"> <br><br>
-            <button id="find">FIND</button>
-            <h3 id="findName" type="text"></h3>
-            <h3 id="findAge" type="number"></h3> <br><br>
-        </div>
+        <table dataTable>
+            <thead>
+                <th>Name</th>
+                <th>Date Created</th>
+            </thead>
+            <tbody id="tbody1">
+               
+            </tbody>
+          </table>
     </div>
 </body>
 </html>

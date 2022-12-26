@@ -24,12 +24,17 @@ from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 const db = getDatabase();
 
-        var enterID = document.querySelector("#enterID");
+        var enterIG = document.querySelector("#enterIG");
         var enterName = document.querySelector("#enterName");
-        var enterAge = document.querySelector("#enterAge");
-        var findID = document.querySelector("#findID");
+        var enterMaterial = document.querySelector("#enterMaterial");
+        var enterQuantity = document.querySelector("#enterQuantity");
+        var enterPriceCharged = document.querySelector("#enterPriceCharged");
+        var enterDateCreated = document.querySelector("#enterDateCreated");
+        var enterReferredBy = document.querySelector("#enterReferredBy");
+
+        var findIG = document.querySelector("#findIG");
         var findName = document.querySelector("#findName");
-        var findAge = document.querySelector("#findAge");
+        var findDateCreated = document.querySelector("#findDateCreated");
       
 
         var insertBtn = document.querySelector("#insert");
@@ -37,11 +42,17 @@ const db = getDatabase();
         var removeBtn = document.querySelector("#remove");
         var findBtn = document.querySelector("#find");
 
+        var table = document.getElementById("dataTable");
+
         function InsertData() {
-            set(ref(db, "Orders/"+ enterID.value),{
+            set(ref(db, "Orders/"+ enterName.value),{
                 Name: enterName.value,
-                ID: enterID.value,
-                Age: enterAge.value
+                IG: enterIG.value,
+                Material: enterMaterial.value,
+                Quantity: enterQuantity.value,
+                TotalPriceCharged: enterPriceCharged.value,
+                DateCreated: enterDateCreated.value,
+                ReferredBy: enterReferredBy.value
             })
             .then(()=>{
                 alert("Data added successfully");
@@ -54,11 +65,11 @@ const db = getDatabase();
         function FindData() {
             const dbref = ref(db);
 
-            get(child(dbref, "Orders/" + findID.value))
+            get(child(dbref, "Orders/" + findName.value))
             .then((snapshot)=>{
                 if(snapshot.exists()){
                     findName.innerHTML = "Name: " + snapshot.val().Name;
-                    findAge.innerHTML = "Age: " + snapshot.val().Age;
+                    findDateCreated.innerHTML = "DateCreated: " + snapshot.val().DateCreated;
                 } else {
                     alert("No data found");
                 }
@@ -70,9 +81,14 @@ const db = getDatabase();
         }
 
         function UpdateData(){
-            update(ref(db, "Orders/"+ enterID.value),{
+            update(ref(db, "Orders/"+ enterName.value),{
                 Name: enterName.value,
-                Age: enterAge.value
+                IG: enterIG.value,
+                Material: enterMaterial.value,
+                Quantity: enterQuantity.value,
+                TotalPriceCharged: enterPriceCharged.value,
+                DateCreated: enterDateCreated.value,
+                ReferredBy: enterReferredBy.value
             })
             .then(()=>{
                 alert("Data updated successfully");
@@ -83,7 +99,7 @@ const db = getDatabase();
         }
 
         function RemoveData(){
-            remove(ref(db, "Orders/"+ enterID.value))
+            remove(ref(db, "Orders/"+ enterName.value))
             .then(()=>{
                 alert("Data deleted successfully");
             })
@@ -92,7 +108,33 @@ const db = getDatabase();
             });
         }
 
+        function SelectAllData(){
+            get().ref(db, "Orders/").once('value'),
+            function(AllRecords){
+                AllRecords.forEach(
+                    function(CurrentRecord){
+                        var Name = CurrentRecord.val().Name;
+                        var DateCreated = CurrentRecord.val().DateCreated;
+                        AddItemsToTable(Name,DateCreated)
+                    }
+                )
+            }
+        }
+        
+        window.onload = SelectAllData;
+
+        function AddItemsToTable(){
+            var tbody = document.getElementById('tbody1')
+            var trow = document.createElement('textarea')
+            var td1 = document.createElement('td')
+            var td2 = document.createElement('td')
+            td1.innerHTML = Name;
+            td2.innerHTML = DateCreated;
+            trow.appendChild(td1);
+            trow.appendChild(td2);
+            tbody.appendChild(trow);
+        }
+
         insertBtn.addEventListener('click', InsertData);
         updateBtn.addEventListener('click', UpdateData);
         removeBtn.addEventListener('click', RemoveData);
-        findBtn.addEventListener('click', FindData);
