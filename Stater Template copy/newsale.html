@@ -6,35 +6,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <script defer type="module" src="/Stater Template/script.js"></script>
-    <link href="/Stater Template/css/styles.css" rel="stylesheet">
+    <script defer type="module" src="/Stater Template copy/newsale.js"></script>
+    <link href="/Stater Template copy/css/index.css" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    <div id="enterDetails">
-        <h1>Enter details</h1>
+    <div class="container">
+        <div class="btn-container">
+            <a href="/Stater Template copy/index.html"><button class="btn-nav">
+                Home
+            </button></a>
+            <button class="btn-nav">
+                Orders
+            </button>
+            <button class="btn-nav">
+                Inventory
+            </button>
+            <button class="btn-nav">
+                Accounting
+            </button>
+            <button class="btn-nav">
+                Clock in/out
+            </button>
+        </div>
+        <div class="details-container text-center" id="enterDetails">
+            <h1>Enter sales details</h1>
+    
+            <h7 class="sales-details">Name</h7> 
+            <input id="enterName" type="text"> 
 
-        <h4>ID</h4> 
-        <input id="enterID" type="text"> 
+            <h7 class="sales-details">IG tag</h7> 
+            <input id="enterIG" type="text"> 
+    
+            <h7 class="sales-details">Material</h7> 
+            <input id="enterMaterial" type="number">
 
-        <h4>Name</h4> 
-        <input id="enterName" type="text"> 
+            <h7 class="sales-details">Quanity</h7> 
+            <input id="enterQuantity" type="number">
 
-        <h4>Age</h4> 
-        <input id="enterAge" type="number"> <br><br>
+            <h7 class="sales-details">Total Price Charged</h7><span>$</span>
+            <input id="enterPriceCharged" type="number" min="0.01" step="0.01"> 
 
-        <button id="insert">INSERT</button>
-        <button id="update">UPDATE</button>
-        <button id="remove">REMOVE</button> <br><br>
-    </div>
-
-    <div id="findDetails">
-        <h1>Find by ID</h1>
-        <h4>ID</h4>
-        <input id="findID" type="text"> <br><br>
-        <button id="find">FIND</button>
-        <h3 id="findName" type="text"></h3>
-        <h3 id="findAge" type="number"></h3> <br><br>
+            <h7 class="sales-details">Date Created</h7>
+            <input id="enterDate" type="date">
+    
+             <br><br>
+    
+            <button id="insert">INSERT</button>
+            <button id="update">UPDATE</button>
+            <button id="remove">REMOVE</button> <br><br>
+        </div>
+    
+        <div id="findDetails">
+            <h1>Find by ID</h1>
+            <h4>ID</h4>
+            <input id="findID" type="text"> <br><br>
+            <button id="find">FIND</button>
+            <h3 id="findName" type="text"></h3>
+            <h3 id="findAge" type="number"></h3> <br><br>
+        </div>
     </div>
 </body>
 </html>

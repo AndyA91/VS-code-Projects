@@ -38,7 +38,7 @@ const db = getDatabase();
         var findBtn = document.querySelector("#find");
 
         function InsertData() {
-            set(ref(db, "People/"+ enterID.value),{
+            set(ref(db, "Orders/"+ enterID.value),{
                 Name: enterName.value,
                 ID: enterID.value,
                 Age: enterAge.value
@@ -54,7 +54,7 @@ const db = getDatabase();
         function FindData() {
             const dbref = ref(db);
 
-            get(child(dbref, "People/" + findID.value))
+            get(child(dbref, "Orders/" + findID.value))
             .then((snapshot)=>{
                 if(snapshot.exists()){
                     findName.innerHTML = "Name: " + snapshot.val().Name;
@@ -70,7 +70,7 @@ const db = getDatabase();
         }
 
         function UpdateData(){
-            update(ref(db, "People/"+ enterID.value),{
+            update(ref(db, "Orders/"+ enterID.value),{
                 Name: enterName.value,
                 Age: enterAge.value
             })
@@ -83,7 +83,7 @@ const db = getDatabase();
         }
 
         function RemoveData(){
-            remove(ref(db, "People/"+ enterID.value))
+            remove(ref(db, "Orders/"+ enterID.value))
             .then(()=>{
                 alert("Data deleted successfully");
             })
