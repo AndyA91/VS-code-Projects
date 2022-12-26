@@ -7,39 +7,28 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script defer type="module" src="/Stater Template copy/index.js"></script>
-    <link href="/Stater Template/css/styles.css" rel="stylesheet">
+    <link href="/Stater Template copy/css/index.css" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    <div id="enterDetails">
-        <h1>Enter details</h1>
-
-        <h4>ID</h4> 
-        <input id="enterID" type="text"> 
-
-        <h4>Name</h4> 
-        <input id="enterName" type="text"> 
-
-        <h4>Sticker Type</h4> 
-        <input id="enterMaterial" type="text"> 
-
-        <h4>Price</h4> 
-        <input id="enterPrice" type="number"> 
-        
-        <br><br>
-
-        <button id="insert">INSERT</button>
-        <button id="update">UPDATE</button>
-        <button id="remove">REMOVE</button> <br><br>
-    </div>
-
-    <div id="findOrders">
-        <h1>Orders</h1>
-        <h4>ID</h4>
-        <input id="findID" type="text"> <br><br>
-        <button id="find">FIND</button>
-        <h3 id="findName" type="text"></h3>
-        <h3 id="findAge" type="number"></h3> <br><br>
+    <div class="container">
+        <div class="btn-group d-flex flex-column">
+            <button class="btn">
+                New Sale
+            </button>
+            <button class="btn">
+                Orders
+            </button>
+            <button class="btn">
+                Inventory
+            </button>
+            <button class="btn">
+                Accounting
+            </button>
+            <button class="btn">
+                Clock in/out
+            </button>
+        </div>
     </div>
 </body>
 </html>
