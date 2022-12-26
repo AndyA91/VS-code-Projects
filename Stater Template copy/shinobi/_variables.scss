@@ -1,6 +1,6 @@
 // theme colors
-$primary: #326dee !default;
-$secondary: #1ac886 !default;
+$primary: #93fff6 !default;
+$secondary: #00f7ff !default;
 $error: #d32752 !default;
 $info: #f6c31c !default;
 
@@ -12,19 +12,10 @@ $base-margin: 0.75rem;
 $base-border-thickness: 1px;
 $base-border-radius: 20px;
 
-h1 {
-  color: $primary;
-  
-  margin-bottom: $base-margin;
-}
-a {
-  color: $secondary;
-}
 button {
-  color: lightblue;
-  border: 0;
-  background: $primary;
-
+  color: black;
+  border-width: .2rem;
+  background: $secondary;
   border-radius: $base-border-radius;
   padding: $base-padding;
 }
@@ -47,4 +38,7 @@ button {
   padding: $base-padding;
   border-radius: $base-border-radius;
   border-width: $base-border-thickness;
+}
+.container {
+  background-color: $primary;
 }
