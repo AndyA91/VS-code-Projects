@@ -32,42 +32,23 @@
         <div class="details-container text-center" id="enterDetails">
             <h1>Enter sales details</h1>
     
-            <h7 class="sales-details">Name</h7> 
-            <input id="enterName" type="text"> 
+            <form class="add">
+                <label for="customer">Customer</label>
+                <input type="text" name="customer" required>
 
-            <h7 class="sales-details">IG tag</h7> 
-            <input id="enterIG" type="text"> 
-    
-            <h7 class="sales-details">Material</h7> 
-            <input id="enterMaterial" type="text">
+                <label for="IG">IG tag</label>
+                <input type="text" name="ig">
 
-            <h7 class="sales-details">Quanity</h7> 
-            <input id="enterQuantity" type="number">
+                <button>add new order</button>
+            </form>
 
-            <h7 class="sales-details">Total Price Charged</h7><span>$</span>
-            <input id="enterPriceCharged" type="number" min="0.01" step="0.01"> 
+            <form class="delete">
+                <label for="id">Document id:</label>
+                <input type="text" name="id" required>
 
-            <h7 class="sales-details">Date Created</h7>
-            <input id="enterDateCreated" type="date">
-
-            <h7 class="sales-details">Referred By</h7>
-            <input id="enterReferredBy" type="text">
-    
-             <br><br>
-    
-            <button id="insert">INSERT</button>
-            <button id="update">UPDATE</button>
-            <button id="remove">REMOVE</button> <br><br>
+                <button>delete a order</button>
+            </form>
         </div>
-        <table dataTable>
-            <thead>
-                <th>Name</th>
-                <th>Date Created</th>
-            </thead>
-            <tbody id="tbody1">
-               
-            </tbody>
-          </table>
     </div>
 </body>
 </html>

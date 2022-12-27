@@ -1,140 +1,66 @@
-  // Import the functions you need from the SDKs you need
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+import {
+    getFirestore, collection, onSnapshot, addDoc, deleteDoc, doc
+} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
+// Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyCcb2rE1qrR8t-glNVWqoiTEHLfi4loO-o",
-    authDomain: "fresh-slapz.firebaseapp.com",
-    databaseURL: "https://fresh-slapz-default-rtdb.firebaseio.com",
-    projectId: "fresh-slapz",
-    storageBucket: "fresh-slapz.appspot.com",
-    messagingSenderId: "328737773558",
-    appId: "1:328737773558:web:5687f91fbc24f22e7a19d7"
+  apiKey: "AIzaSyBYGfKPwPZ4QbPZT2U6h0OXsIyCd9K-GQM",
+  authDomain: "freshslapzapp.firebaseapp.com",
+  projectId: "freshslapzapp",
+  storageBucket: "freshslapzapp.appspot.com",
+  messagingSenderId: "352022399395",
+  appId: "1:352022399395:web:794438cde350700f983216"
 };
 
-  // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// Initialize Firebase
+initializeApp(firebaseConfig);
 
-import {getDatabase, set, get, update, remove, ref, child}
-from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+//init services
+const db = getFirestore()
+
+//collection reference
+const colOrders = collection(db, 'Orders')
+
+// real time collection data
+
+    onSnapshot(colOrders, (snapshot) => {
+        let Orders = []
+        snapshot.docs.forEach((doc) => {
+            Orders.push({ ...doc.data(), id: doc.id })
+        })
+        console.log(Orders)
+    })
+
+//adding documents
+const addOrderForm = document.querySelector('.add')
+addOrderForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    addDoc(colOrders, {
+        customer: addOrderForm.customer.value,
+        IG: addOrderForm.ig.value,
+    })
+    .then(() =>{
+        addOrderForm.reset()
+    })
+
+})
 
 
+//deleting documents
+const deleteOrderForm = document.querySelector('.delete')
+deleteOrderForm.addEventListener('submit', (e) => {
+    e.preventDefault()
 
-const db = getDatabase();
+    const docRef = doc(db, 'Orders', deleteOrderForm.id.value)
 
-        var enterIG = document.querySelector("#enterIG");
-        var enterName = document.querySelector("#enterName");
-        var enterMaterial = document.querySelector("#enterMaterial");
-        var enterQuantity = document.querySelector("#enterQuantity");
-        var enterPriceCharged = document.querySelector("#enterPriceCharged");
-        var enterDateCreated = document.querySelector("#enterDateCreated");
-        var enterReferredBy = document.querySelector("#enterReferredBy");
+    deleteDoc(docRef)
+        .then(() => {
+            deleteOrderForm.reset()
+        })
 
-        var findIG = document.querySelector("#findIG");
-        var findName = document.querySelector("#findName");
-        var findDateCreated = document.querySelector("#findDateCreated");
-      
-
-        var insertBtn = document.querySelector("#insert");
-        var updateBtn = document.querySelector("#update");
-        var removeBtn = document.querySelector("#remove");
-        var findBtn = document.querySelector("#find");
-
-        var table = document.getElementById("dataTable");
-
-        function InsertData() {
-            set(ref(db, "Orders/"+ enterName.value),{
-                Name: enterName.value,
-                IG: enterIG.value,
-                Material: enterMaterial.value,
-                Quantity: enterQuantity.value,
-                TotalPriceCharged: enterPriceCharged.value,
-                DateCreated: enterDateCreated.value,
-                ReferredBy: enterReferredBy.value
-            })
-            .then(()=>{
-                alert("Data added successfully");
-            })
-            .catch((error)=>{
-                alert(error);
-            });
-        }
-
-        function FindData() {
-            const dbref = ref(db);
-
-            get(child(dbref, "Orders/" + findName.value))
-            .then((snapshot)=>{
-                if(snapshot.exists()){
-                    findName.innerHTML = "Name: " + snapshot.val().Name;
-                    findDateCreated.innerHTML = "DateCreated: " + snapshot.val().DateCreated;
-                } else {
-                    alert("No data found");
-                }
-            })
-            .catch((error)=>{
-                alert(error)
-            })
-            
-        }
-
-        function UpdateData(){
-            update(ref(db, "Orders/"+ enterName.value),{
-                Name: enterName.value,
-                IG: enterIG.value,
-                Material: enterMaterial.value,
-                Quantity: enterQuantity.value,
-                TotalPriceCharged: enterPriceCharged.value,
-                DateCreated: enterDateCreated.value,
-                ReferredBy: enterReferredBy.value
-            })
-            .then(()=>{
-                alert("Data updated successfully");
-            })
-            .catch((error)=>{
-                alert(error);
-            });
-        }
-
-        function RemoveData(){
-            remove(ref(db, "Orders/"+ enterName.value))
-            .then(()=>{
-                alert("Data deleted successfully");
-            })
-            .catch((error)=>{
-                alert(error);
-            });
-        }
-
-        function SelectAllData(){
-            get().ref(db, "Orders/").once('value'),
-            function(AllRecords){
-                AllRecords.forEach(
-                    function(CurrentRecord){
-                        var Name = CurrentRecord.val().Name;
-                        var DateCreated = CurrentRecord.val().DateCreated;
-                        AddItemsToTable(Name,DateCreated)
-                    }
-                )
-            }
-        }
-        
-        window.onload = SelectAllData;
-
-        function AddItemsToTable(){
-            var tbody = document.getElementById('tbody1')
-            var trow = document.createElement('textarea')
-            var td1 = document.createElement('td')
-            var td2 = document.createElement('td')
-            td1.innerHTML = Name;
-            td2.innerHTML = DateCreated;
-            trow.appendChild(td1);
-            trow.appendChild(td2);
-            tbody.appendChild(trow);
-        }
-
-        insertBtn.addEventListener('click', InsertData);
-        updateBtn.addEventListener('click', UpdateData);
-        removeBtn.addEventListener('click', RemoveData);
+})
