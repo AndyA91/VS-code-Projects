@@ -1,7 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
 import {
-    getFirestore, collection, onSnapshot, addDoc, deleteDoc, doc
+    getFirestore, collection, onSnapshot, addDoc,
+     deleteDoc, doc, query, where, orderBy, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -25,15 +26,19 @@ const db = getFirestore()
 //collection reference
 const colOrders = collection(db, 'Orders')
 
+//queries
+const q = query(colOrders, orderBy('createdAt'))
+
 // real time collection data
 
-    onSnapshot(colOrders, (snapshot) => {
+    onSnapshot(q, (snapshot) => {
         let Orders = []
         snapshot.docs.forEach((doc) => {
             Orders.push({ ...doc.data(), id: doc.id })
         })
         console.log(Orders)
     })
+
 
 //adding documents
 const addOrderForm = document.querySelector('.add')
@@ -43,6 +48,8 @@ addOrderForm.addEventListener('submit', (e) => {
     addDoc(colOrders, {
         customer: addOrderForm.customer.value,
         IG: addOrderForm.ig.value,
+        price: addOrderForm.price.value,
+        createdAt: serverTimestamp()
     })
     .then(() =>{
         addOrderForm.reset()
