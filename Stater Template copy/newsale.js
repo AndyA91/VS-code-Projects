@@ -2,7 +2,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
 import {
     getFirestore, collection, onSnapshot, addDoc,
-     deleteDoc, doc, query, where, orderBy, serverTimestamp
+     deleteDoc, doc, query, where, orderBy, serverTimestamp,
+     getDoc, updateDoc
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -70,4 +71,26 @@ deleteOrderForm.addEventListener('submit', (e) => {
             deleteOrderForm.reset()
         })
 
+})
+
+// get a single document
+const docRef = doc(db, 'Orders', 'cx4sHHYC4fiSj04cBOxE')
+
+onSnapshot(docRef, (doc) => {
+    console.log(doc.data(), doc.id)
+})
+
+//update a document
+const updateOrderForm = document.querySelector('.update')
+updateOrderForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    const docRef = doc(db, 'Orders', updateOrderForm.id.value)
+
+    updateDoc(docRef, {
+        price: 'updated price'
+    })
+    .then(() =>{
+        updateOrderForm.reset()
+    })
 })
