@@ -1,17 +1,48 @@
+.contain {
+    display: flex;
+    flex-direction: column;
+}
+
 .details-container {
     margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    background-color: red;
 }
 
-.sales-details {
-    margin-top: 2rem;
-    text-align: center;
-    align-content: center;
-}
-
-label {
-    margin-top: 2rem;
-}
-
-input {
+.orderslist {
+    display: flex;
+    flex-direction: column;
     margin: 2rem;
+    background-color: red;
+}
+
+/* order list styles */
+
+#order-list ul, #tabbed-content ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+#order-list li{
+    padding: 20px;
+    border-left: 5px solid #ddd;
+    margin: 20px 10px;
+}
+
+#order-list li:hover{
+    border-color: #9361bf;
+}
+
+.delete{
+    float: right;
+    background: #9361bf;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+}
+
+.delete:hover{
+    background: #333;
 }

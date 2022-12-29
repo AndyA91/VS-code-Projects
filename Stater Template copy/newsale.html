@@ -29,35 +29,51 @@
                 Clock in/out
             </button>
         </div>
-        <div class="details-container text-center" id="enterDetails">
-            <h1>Enter sales details</h1>
+        <div class="contain">
+            <div class="details-container text-center" id="enterDetails">
+                <h1>Enter sales details</h1>
+        
+                <form class="add">
+                    <label for="customer">Customer</label>
+                    <input type="text" name="customer" required>
     
-            <form class="add">
-                <label for="customer">Customer</label>
-                <input type="text" name="customer" required>
-
-                <label for="IG">IG tag</label>
-                <input type="text" name="ig">
-
-                <label for="price">Price Charged</label>
-                <input type="text" name="price">
-
-                <button>add new order</button>
-            </form>
-
-            <form class="delete">
-                <label for="id">Document id:</label>
-                <input type="text" name="id" required>
-
-                <button>delete a order</button>
-            </form>
-
-            <form class="update">
-                <label for="id">Document id:</label>
-                <input type="text" name="id" required>
-
-                <button>update a order</button>
-            </form>
+                    <label for="IG">IG tag</label>
+                    <input type="text" name="ig">
+    
+                    <label for="price">Price Charged</label>
+                    <input type="text" name="price">
+    
+                    <button>add new order</button>
+                </form>
+    
+                <form class="update">
+                    <label for="id">Document id:</label>
+                    <input type="text" name="id" required>
+    
+                    <button>update a order</button>
+                </form>
+            </div>
+            <div class="orderslist" id="order-list">
+                <h2 class="text-center">Orders</h2>
+                <ul>
+                    <li>
+                        <span class="name">Customer Name</span>
+                        <span class="delete">delete</span>
+                    </li>
+                    <li>
+                        <span class="name">Customer Name</span>
+                        <span class="delete">delete</span>
+                    </li>
+                    <li>
+                        <span class="name">Customer Name</span>
+                        <span class="delete">delete</span>
+                    </li>
+                    <li>
+                        <span class="name">Customer Name</span>
+                        <span class="delete">delete</span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </body>
